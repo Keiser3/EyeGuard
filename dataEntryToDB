@@ -1,0 +1,49 @@
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+cred = credentials.Certificate("DatabaseKey.json")
+firebase_admin.initialize_app(cred,{
+    'databaseURL':'https://eyeguard-25473-default-rtdb.firebaseio.com/'
+
+    })
+ref = db.reference('Students')
+data = {
+   "1":{
+         "name": "Ayman BENRABIAA",
+         "filliere": "IIR",
+         "niveau":"3",
+         "last_seen":"2024-12-04 00:00:00"
+       },
+   "2":{
+         "name": "Jane DOE",
+         "filliere": "GC",
+         "niveau":"4",
+         "last_seen":"2024-12-04 00:00:00"
+
+       },
+   "3":{
+         "name": "Jane SMITH",
+         "filliere": "IFA",
+         "niveau":"4",
+         "last_seen":"2024-12-04 00:00:00"
+
+       },
+ "4":{
+         "name": "John DOE",
+         "filliere": "IFA",
+         "niveau":"4",
+         "last_seen":"2024-12-04 00:00:00"
+
+       },
+
+   "5":{
+         "name": "Youssef NAOUM",
+         "filliere": "3IIR",
+         "niveau":"4",
+         "last_seen":"2024-12-04 00:00:00"
+
+       }
+}
+
+for key, value in data.items():
+    ref.child(key).set(value)
